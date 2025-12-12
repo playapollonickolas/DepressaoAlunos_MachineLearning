@@ -22,15 +22,17 @@ def carregar_modelo():
         feature_names = pickle.load(f)
     with open('models/model_info.pkl', 'rb') as f:
         model_info = pickle.load(f)
-    return modelo, scaler, feature_names, model_info
+    with open('models/label_encoders.pkl', 'rb') as f:
+        label_encoders = pickle.load(f)
+    return modelo, scaler, feature_names, model_info, label_encoders
 
 @st.cache_data
 def carregar_dados():
-    df = pd.read_csv('data/student_depression_dataset.csv')
+    df = pd.read_csv('data/depression_data.csv')
     return df
 
 try:
-    modelo, scaler, feature_names, model_info = carregar_modelo()
+    modelo, scaler, feature_names, model_info, label_encoders = carregar_modelo()
     df = carregar_dados()
     modelo_carregado = True
 except:
@@ -115,6 +117,10 @@ elif menu == "Fazer Predição":
         
         if st.button("Realizar Análise", type="primary"):
             input_df = pd.DataFrame([input_data])
+            
+            for col in input_df.columns:
+                if col in label_encoders:
+                    input_df[col] = label_encoders[col].transform(input_df[col].astype(str))
             
             input_scaled = scaler.transform(input_df)
             
@@ -269,28 +275,21 @@ else:
     ### Objetivo
     
     Este projeto tem como objetivo identificar fatores de risco para depressão 
-    em estudantes universitários utilizando técnicas de Machine Learning.
-    
-    ### Metodologia
-    
-    1. Coleta e análise exploratória dos dados
-    2. Pré-processamento e engenharia de features
-    3. Treinamento de múltiplos modelos de classificação
-    4. Seleção do melhor modelo baseado em métricas de performance
-    5. Desenvolvimento de interface interativa para predições
-    
+    em estudantes universitários utilizando técnicas de Machine Learning.    
+       
     ### Tecnologias Utilizadas
     
-    - Python 3.x
-    - Scikit-learn para Machine Learning
-    - Pandas e NumPy para manipulação de dados
-    - Streamlit para interface web
-    - Plotly para visualizações interativas
+    Python 3.x
+    Scikit-learn para Machine Learning
+    Pandas e NumPy para manipulação de dados
+    Streamlit para interface web
+    Plotly para visualizações interativas
     
     ### Dataset
     
     Student Depression Dataset disponível no Kaggle, contendo informações sobre
-    fatores acadêmicos, sociais e comportamentais de estudantes.    
+    fatores acadêmicos, sociais e comportamentais de estudantes.   
+    
     """)
     
     if modelo_carregado:
