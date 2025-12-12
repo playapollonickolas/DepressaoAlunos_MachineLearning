@@ -28,7 +28,7 @@ def carregar_modelo():
 
 @st.cache_data
 def carregar_dados():
-    df = pd.read_csv('data/depression_data.csv')
+    df = pd.read_csv('data/student_depression_dataset.csv')
     return df
 
 try:
