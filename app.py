@@ -52,11 +52,11 @@ if menu == "Página Inicial":
     
     st.markdown("""
     Este sistema utiliza técnicas de Machine Learning para analisar fatores 
-    relacionados à depressão em estudantes universitários.
+    relacionados à depressão em estudantes universitários utilizando .
     """)
     
     if modelo_carregado:
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4 = st.rows(4)
         
         with col1:
             st.metric("Modelo", model_info['modelo_nome'])
