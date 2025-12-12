@@ -287,9 +287,13 @@ else:
     
     ### Dataset
     
-    Student Depression Dataset disponível no Kaggle, contendo informações sobre
+    [Student Depression Dataset](https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset) disponível no Kaggle, contendo informações sobre
     fatores acadêmicos, sociais e comportamentais de estudantes.   
     
+    ### Autor
+                
+    Apolo Nicolas Ferreira Tenório, aluno de Análise e Desenvolvimento de Sistemas da Faculdade Senac PE.
+                
     """)
     
     if modelo_carregado:
