@@ -58,14 +58,10 @@ if menu == "Página Inicial":
     if modelo_carregado:
         col1, col2, col3, col4 = st.columns(4)
         
-        with col1:
-            st.metric("Modelo", model_info['modelo_nome'])
-        with col2:
-            st.metric("Acurácia", f"{model_info['acuracia']:.2%}")
-        with col3:
-            st.metric("F1-Score", f"{model_info['f1_score']:.2%}")
-        with col4:
-            st.metric("Amostras de Treino", model_info['n_samples_train'])
+        st.metric("Modelo", model_info['modelo_nome'])
+        st.metric("Acurácia", f"{model_info['acuracia']:.2%}")
+        st.metric("F1-Score", f"{model_info['f1_score']:.2%}")
+        st.metric("Amostras de Treino", model_info['n_samples_train'])
         
         st.subheader("Informações do Dataset")
         col1, col2 = st.columns(2)
